@@ -1,0 +1,14 @@
+[user]
+  name = Marius Breivik
+  email = marius.breivik@gmail.com
+[color]
+  ui = true
+[core]
+  editor = vim
+  filemode = false
+[push]
+    default = simple
+[format]
+  pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
+[merge]
+  tool = vimdiff
