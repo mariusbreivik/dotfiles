@@ -100,7 +100,5 @@ alias diskspace="du -S | sort -n -r |more"
 # size (sorted) of only the folders in this directory
 alias folders="find . -maxdepth 1 -type d -print | xargs du -sk | sort -rn"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zshconfig
-
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
