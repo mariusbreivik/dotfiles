@@ -51,39 +51,13 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sublime fzf)
+plugins=(git sublime fzf osx common-aliases)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
 alias zshconfig="code ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 
 # go-lang
 export GOPATH=$HOME/go
@@ -94,11 +68,8 @@ alias ll='ls -alh'
 alias la='ls -A'
 alias l='ls -CFlh'
 
-# finding out what is taking space on your drives!
-alias diskspace="du -S | sort -n -r |more"
-
-# size (sorted) of only the folders in this directory
-alias folders="find . -maxdepth 1 -type d -print | xargs du -sk | sort -rn"
+setopt auto_cd # If cmd isn't a command, and it is a directory in your cdpath, go there
+cdpath=($HOME/dev $HOME/$GOPATH)
 
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
