@@ -51,25 +51,28 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sublime fzf osx common-aliases)
+plugins=(git fzf osx common-aliases)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-alias zshconfig="code ~/.zshrc"
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=10
 
 # go-lang
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
-# some more ls aliases
+# aliases
 alias ll='ls -alh'
 alias la='ls -A'
 alias l='ls -CFlh'
+alias mci='mvn clean install'
+alias zshconfig="code ~/.zshrc"
 
 setopt auto_cd # If cmd isn't a command, and it is a directory in your cdpath, go there
 cdpath=($HOME/dev $HOME/$GOPATH)
 
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.amediaConfig.zsh
