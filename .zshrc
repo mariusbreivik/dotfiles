@@ -69,9 +69,14 @@ alias la='ls -A'
 alias l='ls -CFlh'
 alias mci='mvn clean install'
 alias zshconfig="code ~/.zshrc"
+alias dc='docker-compose'
+
+# Java
+alias java8="export JAVA_HOME=$(/usr/libexec/java_home -v1.8)"
+alias java11="export JAVA_HOME=$(/usr/libexec/java_home -v11)"
 
 setopt auto_cd # If cmd isn't a command, and it is a directory in your cdpath, go there
-cdpath=($HOME/dev $HOME/$GOPATH)
+cdpath=($HOME/dev/** $HOME/$GOPATH)
 
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
