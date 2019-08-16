@@ -51,7 +51,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf osx common-aliases)
+plugins=(git mvn fzf osx common-aliases)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -74,6 +74,7 @@ alias dc='docker-compose'
 # Java
 alias java8="export JAVA_HOME=$(/usr/libexec/java_home -v1.8)"
 alias java11="export JAVA_HOME=$(/usr/libexec/java_home -v11)"
+alias java12="export JAVA_HOME=$(/usr/libexec/java_home -v12)"
 
 setopt auto_cd # If cmd isn't a command, and it is a directory in your cdpath, go there
 cdpath=($HOME/dev/** $GOPATH/src/github.com/**)
