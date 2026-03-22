@@ -51,13 +51,23 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git mvn zsh-autosuggestions zsh-syntax-highlighting zsh-direnv)
+# Note: zsh-syntax-highlighting must be last
+plugins=(git mvn zsh-direnv zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=10
+# History configuration
+HISTSIZE=50000
+SAVEHIST=50000
+HIST_STAMPS="yyyy-mm-dd"
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 # go-lang
 export GOPATH=$HOME/go
@@ -69,8 +79,8 @@ alias la='ls -A'
 alias l='ls -CFlh'
 alias mci='mvn clean install'
 alias zshconfig="code ~/.zshrc"
-alias dc='docker-compose'
+alias dc='docker compose'
 
-setopt auto_cd #
-cdpath=($HOME/dev/**)
+setopt auto_cd
+cdpath=($HOME/dev)
 

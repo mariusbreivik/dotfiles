@@ -2,7 +2,7 @@
 set -euo pipefail
 
 DOTFILES_DIR="$HOME/dotfiles"
-REPO_URL="https://github.com/marius/dotfiles.git"
+REPO_URL="https://github.com/mariusbreivik/dotfiles.git"
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
 log() {

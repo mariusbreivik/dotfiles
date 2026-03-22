@@ -1,11 +1,11 @@
 " Syntax highlight
 syntax on
 
-" Use Vim defaults
-set nocompatible
+" Enable filetype detection, plugins, and indentation
+filetype plugin indent on
 
 " Allow backspacing over everything in insert mode
-set backspace=2
+set backspace=indent,eol,start
 
 " Show the cursor position all the time
 set ruler
@@ -34,23 +34,18 @@ set hlsearch
 " Case-insensitive search
 set ignorecase
 
-" We have a fast TTY
-set ttyfast
+" Case-sensitive if uppercase present
+set smartcase
 
 " Enable UTF-8
 set encoding=utf-8
-set termencoding=utf-8
 set fileencodings=utf-8,iso-8859-1
-
-" Do not wrap lines automatically
-"set nowrap
 
 " Linewidth to endless
 set textwidth=0
 
 set autoindent
 set smartindent
-filetype indent on
 
 " Tab-behavior
 " tab-characters will display as 2 spaces
@@ -64,6 +59,19 @@ set expandtab
 
 " Show line numbers
 set number
+
+" Allow unsaved buffers in background
+set hidden
+
+" Visual command completion
+set wildmenu
+
+" Keep 5 lines visible around cursor
+set scrolloff=5
+
+" Faster escape key handling
+set ttimeout
+set ttimeoutlen=100
 
 " {{{ Folding
 
