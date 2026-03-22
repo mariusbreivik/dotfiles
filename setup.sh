@@ -1,7 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-TOOLS_DIR="$HOME/.tools"
+DOTFILES_DIR="$HOME/dotfiles"
+REPO_URL="https://github.com/marius/dotfiles.git"
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
 log() {
@@ -10,6 +11,14 @@ log() {
 
 error() {
   echo -e "\033[1;31m$1\033[0m" >&2
+}
+
+clone_dotfiles() {
+  if [ ! -d "$DOTFILES_DIR" ]; then
+    log "Kloner dotfiles repo til $DOTFILES_DIR"
+    git clone "$REPO_URL" "$DOTFILES_DIR"
+    exec "$DOTFILES_DIR/setup.sh"
+  fi
 }
 
 install_oh_my_zsh() {
@@ -42,7 +51,7 @@ install_sdkman() {
 create_symlinks() {
   for file in .vimrc .zshrc .gitconfig; do
     log "Lager symlink til $file"
-    ln -vfs "$TOOLS_DIR/$file" "$HOME/$file"
+    ln -vfs "$DOTFILES_DIR/$file" "$HOME/$file"
   done
 }
 
@@ -65,6 +74,7 @@ install_plugins() {
 }
 
 main() {
+  clone_dotfiles
   install_oh_my_zsh
   install_homebrew
   install_sdkman
