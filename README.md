@@ -7,7 +7,7 @@ Personal configuration files for macOS/Linux development environment.
 Run this one-liner to install:
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/marius/dotfiles/main/setup.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mariusbreivik/dotfiles/refs/heads/main/setup.sh)"
 ```
 
 This will:
