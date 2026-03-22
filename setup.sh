@@ -31,7 +31,7 @@ trap cleanup ERR
 
 check_dependencies() {
   local missing=()
-  for cmd in git curl; do
+  for cmd in git curl zsh; do
     if ! command -v "$cmd" >/dev/null 2>&1; then
       missing+=("$cmd")
     fi
@@ -41,7 +41,7 @@ check_dependencies() {
     error "Installer disse før du kjører setup.sh"
     exit 1
   fi
-  log "Avhengigheter OK (git, curl)"
+  log "Avhengigheter OK (git, curl, zsh)"
 }
 
 clone_dotfiles() {
@@ -65,21 +65,25 @@ install_homebrew() {
   if ! command -v brew >/dev/null 2>&1; then
     log "Installerer Homebrew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    
-    # Add Homebrew to PATH for Apple Silicon (M1/M2)
-    if [[ -d "/opt/homebrew/bin" ]]; then
-      eval "$(/opt/homebrew/bin/brew shellenv)"
-      log "Homebrew lagt til i PATH (Apple Silicon)"
-    fi
   else
     log "Homebrew allerede installert"
+  fi
+
+  # Add Homebrew to PATH for current session
+  if [[ -d "/opt/homebrew/bin" ]]; then
+    # Apple Silicon (M1/M2/M3)
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [[ -d "/usr/local/Homebrew" ]]; then
+    # Intel Mac
+    eval "$(/usr/local/bin/brew shellenv)"
   fi
 }
 
 install_sdkman() {
   if [ ! -d "$HOME/.sdkman" ]; then
     log "Installerer sdkman.io"
-    curl -s "https://get.sdkman.io?ci=true" | bash
+    # Use zsh to run installer - avoids Bash 4+ requirement on macOS
+    curl -fsSL "https://get.sdkman.io" | zsh
   else
     log "sdkman allerede installert"
   fi
@@ -142,8 +146,8 @@ main() {
 
   check_dependencies
   clone_dotfiles
-  install_oh_my_zsh
   install_homebrew
+  install_oh_my_zsh
   install_sdkman
   backup_dotfiles
   create_symlinks
