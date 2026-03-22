@@ -79,7 +79,7 @@ install_homebrew() {
 install_sdkman() {
   if [ ! -d "$HOME/.sdkman" ]; then
     log "Installerer sdkman.io"
-    curl -fsSL "https://get.sdkman.io" | bash
+    curl -s "https://get.sdkman.io?ci=true" | bash
   else
     log "sdkman allerede installert"
   fi
