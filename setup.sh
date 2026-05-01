@@ -100,6 +100,10 @@ backup_dotfiles() {
     fi
   done
 
+  if [ -f "$HOME/.config/ghostty/config" ] && [ ! -L "$HOME/.config/ghostty/config" ]; then
+    needs_backup=true
+  fi
+
   if $needs_backup; then
     mkdir -p "$backup_dir"
     for file in .vimrc .zshrc .gitconfig; do
@@ -108,6 +112,11 @@ backup_dotfiles() {
         mv "$HOME/$file" "$backup_dir/"
       fi
     done
+    if [ -f "$HOME/.config/ghostty/config" ] && [ ! -L "$HOME/.config/ghostty/config" ]; then
+      mkdir -p "$backup_dir/.config/ghostty"
+      warn "Tar backup av .config/ghostty/config til $backup_dir/.config/ghostty/"
+      mv "$HOME/.config/ghostty/config" "$backup_dir/.config/ghostty/config"
+    fi
     log "Backup fullført: $backup_dir"
   fi
 }
@@ -117,6 +126,10 @@ create_symlinks() {
     log "Lager symlink til $file"
     ln -vfs "$DOTFILES_DIR/$file" "$HOME/$file"
   done
+
+  mkdir -p "$HOME/.config/ghostty"
+  log "Lager symlink til .config/ghostty/config"
+  ln -vfs "$DOTFILES_DIR/.config/ghostty/config" "$HOME/.config/ghostty/config"
 }
 
 clone_plugin() {
